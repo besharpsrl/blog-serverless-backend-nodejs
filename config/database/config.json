@@ -1,0 +1,18 @@
+{
+  "local": {
+    "host": "localhost",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "postgres",
+    "dialect": "postgresql",
+    "log": true
+  },
+  "dev": {
+    "host": "xxxx",
+    "username": "xxxx",
+    "password": "xxxx",
+    "database": "postgres",
+    "dialect": "postgresql",
+    "log": true
+  }
+}
