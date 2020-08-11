@@ -1,4 +1,4 @@
-import {BookModel} from "../../model/BookModel";
+import {BookModel} from "../../book/model/BookModel";
 const {DataTypes } = require('sequelize');
 
 export function InitModel(sequelize){
