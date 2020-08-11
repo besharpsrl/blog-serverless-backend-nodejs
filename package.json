@@ -1,0 +1,37 @@
+{
+  "name": "express-serverless",
+  "version": "1.0.0",
+  "description": "Express serverless app",
+  "main": "app.js",
+  "scripts": {
+    "generate-swagger": "./node_modules/tsoa/dist/cli.js swagger",
+    "generate-routes": "./node_modules/tsoa/dist/cli.js routes",
+    "build": "./node_modules/typescript/bin/tsc",
+    "prebuild": "npm run generate-routes && ./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --fix && rm -rf dist/",
+    "prestart": "npm install && npm run build",
+    "start": "isLocal=true NODE_ENV=dev sls offline start",
+    "pre-deploy": "rm -rf node_modules .serverless && npm install --production && npm run build && ./prepare-layer.sh",
+    "deploy-dev": "npm run pre-deploy && NODE_ENV=dev sls deploy",
+    "migrate-db-local": "NODE_ENV=local ./node_modules/sequelize-cli/lib/sequelize db:migrate",
+    "migrate-db-dev": "NODE_ENV=dev ./node_modules/sequelize-cli/lib/sequelize db:migrate"
+  },
+  "author": "beSharp",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "~4.17.5",
+    "@types/sequelize": "^4.28.9",
+    "aws-sdk": "^2.713.0",
+    "express": "~4.17.1",
+    "pg": "^8.3.0",
+    "sequelize": "~6.3.0",
+    "serverless-http": "~2.5.0",
+    "serverless-offline": "^6.5.0",
+    "swagger-ui-express": "~4.1.4",
+    "tslint": "~6.1.2",
+    "tsoa": "~2.5.13"
+  },
+  "devDependencies": {
+    "sequelize-cli": "~6.2.0",
+    "serverless-offline": "~6.5.0"
+  }
+}
