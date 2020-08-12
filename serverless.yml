@@ -6,6 +6,13 @@ provider:
   stage: ${env:NODE_ENV}
   environment:
     NODE_ENV: ${env:NODE_ENV}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'secretsmanager:GetSecretValue'
+      Resource:
+        - '*'
+
 package:
   exclude:
     - node_modules/**
@@ -16,6 +23,19 @@ layers:
     path: layer
     compatibleRuntimes:
       - nodejs12.x
+
+resources:
+  Resources:
+    LambdaSecurityGroup:
+      Properties:
+        GroupDescription: Lambda security group
+        GroupName: !Join
+          - '-'
+          - - express-lambda-
+            - ${env:NODE_ENV}
+            - private-sg
+        VpcId: 'vpc-a2918ac0'
+      Type: AWS::EC2::SecurityGroup
 
 functions:
   app:
@@ -31,6 +51,13 @@ functions:
           path: /api/{proxy+}
           method: ANY
           cors: true
+    vpc:
+      securityGroupIds:
+        - {Ref: LambdaSecurityGroup}
+      subnetIds:
+        - "subnet-7963881c"
+        - "subnet-35392e41"
+        - "subnet-75af9b33"
 
 plugins:
   - serverless-offline
