@@ -76,8 +76,8 @@ export class ConfigSequelize{
 
             const jsonResp = JSON.parse(resp.SecretString);
             return {
-                username: jsonResp.user,
-                password: jsonResp.pwd
+                username: jsonResp.username,
+                password: jsonResp.password
             }
         }
         catch(error){
