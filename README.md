@@ -3,8 +3,7 @@
 This is a base project for an Express Serverless backend application, using AWS as Cloud Provider.
 
 By running this project you will have a CRUD application by Express as NodeJs web application framework.
-
-The whole project is written using TypeScript to obtain all the advantages with respect to write it with old vanilla JavaScript.
+It is written in TypeScript to obtain all the advantages with respect to vanilla JavaScript.
 
 In this project we will use ```tsoa``` to register our Express routes and to obtain validation without using boilerplate code.
 
