@@ -24,11 +24,11 @@ You can run the docker-compose file to create a container with a Postgres databa
 
     docker-compose up
 
-When the container is up, run the migration file to initialize correctly the database:
+When the container is up, run the migration file to correctly initialize the database:
 
     npm run migrate-db-local
     
-Since we can't directly test Lambda functions on out local machine, we can use the ```serverless-offline``` plugin to achieve this goal.
+Since we can't directly test Lambda functions on our local machine, we can use the ```serverless-offline``` plugin to achieve this goal.
 Run the following command to emulate locally AWS Lambda and API Gateway:
 
     npm run start
@@ -39,7 +39,7 @@ Keep in mind that all the API has `/{NODE_ENV}/api` as root prefix
 
 [Serverless framework](https://github.com/serverless/serverless) comes in our help to easily manage our cloud infrastructure.
 
-Thanks to the configuration defined in the serverless.yml file, we will have an API Gateway with single resource which proxies the API calls to the proper Express route.
+Thanks to the configuration defined in the serverless.yml file, we are going to create an API Gateway with single resource which proxies the API calls to the proper Express route.
 
 
 ## AWS configuration
